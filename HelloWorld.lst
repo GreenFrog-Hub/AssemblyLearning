@@ -1,0 +1,25 @@
+     1                                  section .text
+     2                                  	global _start
+     3                                  
+     4                                  _start:
+     5 00000000 BA17000000              	mov edx,len
+     6 00000005 B9[00000000]            	mov ecx,msg
+     7 0000000A BB01000000              	mov ebx,1
+     8 0000000F B804000000              	mov eax,4
+     9 00000014 CD80                    	int 0x80
+    10                                  
+    11 00000016 BA09000000              	mov edx,9
+    12 0000001B B9[17000000]            	mov ecx,s2
+    13 00000020 BB01000000              	mov ebx,1
+    14 00000025 B804000000              	mov eax,4
+    15 0000002A CD80                    	int 0x80
+    16                                  	
+    17 0000002C B801000000              	mov eax,1
+    18 00000031 CD80                    	int 0x80
+    19                                  
+    20                                  section .data
+    21 00000000 48656C6C6F20576F72-     msg db 'Hello World Compile 2!', 0xa
+    21 00000009 6C6420436F6D70696C-
+    21 00000012 652032210A         
+    22                                  len equ $ -msg
+    23 00000017 2A<rep 9h>              s2 times 9 db '*'
