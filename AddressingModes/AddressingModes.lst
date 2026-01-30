@@ -1,0 +1,31 @@
+     1                                  section .text
+     2                                  	global _start
+     3                                  
+     4                                  _start:
+     5                                  ;	mov ebx,[TABLE]
+     6                                  ;	mov [ebx], DWORD 1
+     7                                  ;	add ebx,2
+     8                                  ;	mov [ebx],5
+     9                                  
+    10 00000000 BA01000000              	mov edx,1
+    11                                  ;	mov cx,table[2]
+    12 00000005 8B0D[00000000]          	mov ecx,TABLE[0]
+    13                                  ;	mov ecx,1
+    14 0000000B BB01000000              	mov ebx,1
+    15 00000010 B804000000              	mov eax,4
+    16 00000015 CD80                    	int 0x80
+    17                                  	
+    18 00000017 BA04000000              	mov edx,lenMsg
+    19 0000001C B9[0A000000]            	mov ecx,msg
+    20 00000021 BB01000000              	mov ebx,1
+    21 00000026 B804000000              	mov eax,4
+    22 0000002B CD80                    	int 0x80
+    23                                  
+    24 0000002D BB01000000              	mov ebx,1
+    25 00000032 B801000000              	mov eax,1
+    26 00000037 CD80                    	int 0x80
+    27                                  
+    28                                  section .data
+    29 00000000 61<rep Ah>              	TABLE TIMES 10 DB 'a'
+    30 0000000A 54657374                	msg db 'Test'
+    31                                  	lenMsg equ $-msg
